@@ -1,7 +1,7 @@
 <template>
     <div class="container text-center">
         <h2 class="my-5">Discover All Available Top-picks!</h2>
-        <div class="row align-items-center flex-fill nihtp">
+        <div class="row align-items-start flex-fill nihtp">
             <div class="col m-3 " v-for="tp in toppik.docs">
                 <div class="card" style="width: 18rem;">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/P_20200909_090802_vHDR_On.jpg/800px-P_20200909_090802_vHDR_On.jpg" class="card-img-top" alt="...">

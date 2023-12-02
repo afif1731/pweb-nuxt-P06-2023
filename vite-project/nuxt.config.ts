@@ -1,6 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  routeRules: {
+    '/ssr': {prerender: true},
+    '/csr': {ssr: false},
+    '/csr/**': {ssr: false}
+  },
   app: {
     head: {
       title: "TOP-Pick",

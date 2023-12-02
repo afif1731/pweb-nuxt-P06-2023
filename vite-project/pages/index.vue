@@ -4,7 +4,7 @@
     <div class=" container-md text-center">
         <div class=" row ">
             <div class=" col-sm "><a class="btn btn-primary m-3 btn-lg " href="/ssr" role="button">SSR</a></div>
-            <div class=" col-sm "><a class="btn btn-primary m-3 btn-lg " href="#" role="button">CSR</a></div>
+            <div class=" col-sm "><a class="btn btn-primary m-3 btn-lg " href="/csr" role="button">CSR</a></div>
         </div>
     </div>
 </template>

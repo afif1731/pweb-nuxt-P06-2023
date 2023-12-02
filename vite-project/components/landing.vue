@@ -30,7 +30,7 @@ const { pending, data: konten } = await useFetch("http://localhost:5000/api/blog
                     </div>
                     <div class=" blog-isi">
                         <p><NuxtLink :to="`/${renType}/tp/${knten.thistp.tpname}`" class=" blog-topik text-decoration-none">tp/{{ knten.thistp.tpname }}</NuxtLink></p>
-                        <NuxtLink :to="`/${renType}/tp/${knten.thistp.tpname}/blog/${knten.id}`" class=" blog-jdul text-decoration-none">{{ knten.judulblog }}</NuxtLink>
+                        <NuxtLink :to="`/${renType}/tp/${knten.thistp.tpname}-blog/${knten.id}`" class=" blog-jdul text-decoration-none">{{ knten.judulblog }}</NuxtLink>
                         <p class=" mt-4 ">By: {{ knten.uploader.username }}</p>
                     </div>
                 </div>
