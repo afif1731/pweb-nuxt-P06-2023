@@ -9,6 +9,41 @@ const Blogs = {
         update: () => true,
         delete: () => true
     },
+    hooks: {
+        afterOperation: [async (args) => { if(args.operation == "create") {
+            payload.create({
+                collection: "loogg",
+                data: {
+                    koleksi: `BLOG::${args.result.id}`,
+                    aksi: "CREATE",
+                    timestamp: new Date()
+                }
+            })
+        }
+        }],
+        afterChange: [async (args) => {
+            if (args.previousDoc.judulblog != undefined) {
+                payload.create({
+                    collection: "loogg",
+                    data: {
+                        koleksi: `BLOG::${args.previousDoc.id}`,
+                        aksi: "UPDATE",
+                        timestamp: new Date()
+                    }
+                })
+            }
+        }],
+        afterDelete: [async (args) => {
+            payload.create({
+                collection: "loogg",
+                data: {
+                    koleksi: `BLOG::${args.doc.id}`,
+                    aksi: "DELETE",
+                    timestamp: new Date()
+                }
+            })
+        }]
+    },
     fields: [
         {
             name: 'judulblog',

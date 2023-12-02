@@ -11,6 +11,7 @@ import Blogers from './collections/Blogers'
 import Blogs from './collections/Blogs'
 import Media from './collections/Media'
 import Toppick from './collections/Toppick'
+import Logs from './collections/Logs'
 
 export default buildConfig({
   admin: {
@@ -18,7 +19,7 @@ export default buildConfig({
     bundler: webpackBundler(),
   },
   editor: slateEditor({}),
-  collections: [Users, Blogers, Blogs, Media, Toppick],
+  collections: [Users, Blogers, Blogs, Media, Toppick, Logs],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },

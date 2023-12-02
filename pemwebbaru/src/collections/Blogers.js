@@ -14,6 +14,41 @@ const Blogers = {
         update: () => true,
         delete: () => true
     },
+    hooks: {
+        afterOperation: [async (args) => { if(args.operation == "create") {
+            payload.create({
+                collection: "loogg",
+                data: {
+                    koleksi: `BLOGER::${args.result.id}`,
+                    aksi: "CREATE",
+                    timestamp: new Date()
+                }
+            })
+        }
+        }],
+        afterChange: [async (args) => {
+            if (args.previousDoc.username != undefined) {
+                payload.create({
+                    collection: "loogg",
+                    data: {
+                        koleksi: `BLOGER::${args.previousDoc.id}`,
+                        aksi: "UPDATE",
+                        timestamp: new Date()
+                    }
+                })
+            }
+        }],
+        afterDelete: [async (args) => {
+            payload.create({
+                collection: "loogg",
+                data: {
+                    koleksi: `BLOGER::${args.doc.id}`,
+                    aksi: "DELETE",
+                    timestamp: new Date()
+                }
+            })
+        }]
+    },
     fields: [
         {
             name: 'username',

@@ -9,6 +9,29 @@ const Media = {
         update: () => true,
         delete: () => true
     },
+    hooks: {
+        afterOperation: [async (args) => { if(args.operation == "create") {
+            payload.create({
+                collection: "loogg",
+                data: {
+                    koleksi: `MEDIA::${args.result.id}`,
+                    aksi: "CREATE",
+                    timestamp: new Date()
+                }
+            })
+        }
+        }],
+        afterDelete: [async (args) => {
+            payload.create({
+                collection: "loogg",
+                data: {
+                    koleksi: `MEDIA::${args.doc.id}`,
+                    aksi: "DELETE",
+                    timestamp: new Date()
+                }
+            })
+        }]
+    },
     upload: {
         staticURL: '/media',
         staticDir: '../../vite-project/public/media',
