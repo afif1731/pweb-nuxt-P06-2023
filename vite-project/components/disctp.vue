@@ -6,9 +6,9 @@
                 <div class="card" style="width: 18rem;">
                     <img :src="tp.tpimg.sizes.thumbnail.url" class="card-img-top" :alt="tp.tpimg.sizes.thumbnail.filename">
                     <div class="card-body">
-                        <h5 class="card-title">{{ tp.tpname }}</h5>
+                        <h5 class="card-title">tp/{{ tp.tpname }}</h5>
                         <p class="card-text">{{ tp.tpdesc }}</p>
-                        <NuxtLink :to="`/${renType}/tp/${tp.tpname}`" class="btn btn-primary">visit {{ tp.tpname }}</NuxtLink>
+                        <NuxtLink :to="`/${renType}/tp/${tp.tpname}`" class="btn btn-primary">visit tp/{{ tp.tpname }}</NuxtLink>
                     </div>
                 </div>
             </div>
