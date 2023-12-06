@@ -68,6 +68,18 @@ const Toppick = {
             type: 'text',
             maxLength: 20,
             required: true
+        },
+        {
+            name: 'tpdesc',
+            type: 'text', 
+            maxLength: 100,
+            required: true
+        },
+        {
+            name: 'tpimg',
+            type: 'upload',
+            relationTo: 'media',
+            required: true
         }
     ]
 }

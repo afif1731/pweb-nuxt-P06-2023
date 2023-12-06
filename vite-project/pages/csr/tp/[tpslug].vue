@@ -2,14 +2,16 @@
     <div>
       <navbar :renType="'csr'" />
     </div>
-    <h1>Topik ke- {{ tpslug }}</h1>
+    <div>
+      <landingtp :renType="'csr'" :tpname="tpname" />
+    </div>
 </template>
 
 <script> 
 export default {
   data() {
 	  return {
-	  	tpslug: this.$route.params.tpslug
+	  	tpname: this.$route.params.tpslug
     }
   }
 }

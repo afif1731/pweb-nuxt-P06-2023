@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <NuxtLink to="/" class="navbar-brand"><strong>TOP-Pick</strong></NuxtLink>
 
-            <div class=" align-items-center pb-3 ">
+            <div class=" align-items-center pb-3 d-none ">
                 <form class="d-flex mt-3" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="offcanvas-body w-auto ">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 fw-semibold">
-                    <li class="nav-item dropdown mx-1 ">
+                    <li class="nav-item dropdown mx-1 d-none ">
                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Followed
                         </a>
@@ -39,12 +39,12 @@
                         <NuxtLink :to="`/${renType}/tp`" class="nav-link active " aria-current="page">Discover</NuxtLink>
                     </li>
                     <li class="nav-item mx-1 ">
-                        <a class="nav-link active" aria-current="page" href="#">About</a>
+                        <a class="nav-link active" aria-current="page" :href="`/${renType}/about`">About</a>
                     </li>
                     <li class="nav-item mx-1 ">
-                        <a class="nav-link active" href="#">Profile</a>
+                        <NuxtLink :to="`/${renType}`" class="nav-link active " aria-current="page">Home</NuxtLink>
                     </li>
-                    <li class="nav-item mx-1 ">
+                    <li class="nav-item mx-1 d-none ">
                         <NuxtLink :to="`/${renType}/login`" class="btn btn-outline-success nav-link">Login</NuxtLink>
                     </li>
                     </ul>

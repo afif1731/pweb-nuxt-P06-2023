@@ -1,8 +1,9 @@
 <script setup>
-const { renType } = defineProps(['renType'])
+import axios from 'axios'
+const { renType, tpname } = defineProps(['renType', 'tpname'])
 
-const { pending, data: konten } = await useFetch("http://localhost:5000/api/blog?sort=-createdAt", {
-    lazy: false
+const { pending, data: tpblog } = await $fetch(`http://localhost:5000/api/toppick?where%5Bor%5D%5B0%5D%5Band%5D%5B0%5D%5Btpname%5D%5Bequals%5D=${tpname}`).then((res) => {
+    return axios.get(`http://localhost:5000/api/blog?sort=createdAt&where%5Bor%5D%5B0%5D%5Band%5D%5B0%5D%5Bthistp%5D%5Bequals%5D=${res.docs[0].id}`)
 })
 </script>
 
@@ -10,18 +11,11 @@ const { pending, data: konten } = await useFetch("http://localhost:5000/api/blog
     <div class=" container-fluid ">
         <div class=" utama row-1">
             <div class=" col border border-3 border-black border-opacity-50 shadow w-auto p-3 rounded-3 mb-5">
-                <span>Sort By: </span>
-                <button class="btn btn-sm btn-secondary dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                Latest
-                </button>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="#">Hot</a></li>
-                <li><a class="dropdown-item" href="#">Latest</a></li>
-                <li><a class="dropdown-item" href="#">Oldest</a></li>
-                </ul>
+                <p v-if="pending"></p>
+                <h3>tp/{{ tpname }}</h3>
             </div>
             
-            <div class="semua-konten" v-for="knten in konten.docs">
+            <div class="semua-konten" v-for="knten in tpblog.docs">
                 <div class=" blog-col col border border-3 border-black border-opacity-50 shadow w-auto p-3 rounded-3 my-4">
                     <div class="blog-img-outer">
                         <div class=" blog-img d-flex rounded-3">
@@ -29,7 +23,6 @@ const { pending, data: konten } = await useFetch("http://localhost:5000/api/blog
                         </div>
                     </div>
                     <div class=" blog-isi">
-                        <p><NuxtLink :to="`/${renType}/tp/${knten.thistp.tpname}`" class=" blog-topik text-decoration-none">tp/{{ knten.thistp.tpname }}</NuxtLink></p>
                         <NuxtLink :to="`/${renType}/tp/${knten.thistp.tpname}-blog/${knten.id}`" class=" blog-jdul text-decoration-none">{{ knten.judulblog }}</NuxtLink>
                         <p class=" mt-4 ">By: {{ knten.uploader.username }}</p>
                     </div>
@@ -69,11 +62,6 @@ const { pending, data: konten } = await useFetch("http://localhost:5000/api/blog
         padding: 0 2%;
         position: relative;
     }
-    .blog-topik {
-        font-size: 22px;
-        font-weight: 700;
-        color: rgba(77, 60, 117, 75)
-    }
     .blog-jdul {
         font-size: 24px;
         font-weight: 600;
@@ -99,9 +87,6 @@ const { pending, data: konten } = await useFetch("http://localhost:5000/api/blog
             text-align: center;
             padding: 2% 0;
             display: block;
-        }
-        .blog-topik {
-            font-size: 18px;
         }
         .blog-jdul {
             font-size: 20px;

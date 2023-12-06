@@ -1,13 +1,13 @@
 <template>
     <div class="container text-center">
         <h2 class="my-5">Discover All Available Top-picks!</h2>
-        <div class="row align-items-start flex-fill nihtp">
-            <div class="col m-3 " v-for="tp in toppik.docs">
+        <div class="row align-items-center nihtp">
+            <div class="col my-3 d-flex " v-for="tp in toppik.docs">
                 <div class="card" style="width: 18rem;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/P_20200909_090802_vHDR_On.jpg/800px-P_20200909_090802_vHDR_On.jpg" class="card-img-top" alt="...">
+                    <img :src="tp.tpimg.sizes.thumbnail.url" class="card-img-top" :alt="tp.tpimg.sizes.thumbnail.filename">
                     <div class="card-body">
                         <h5 class="card-title">{{ tp.tpname }}</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">{{ tp.tpdesc }}</p>
                         <NuxtLink :to="`/${renType}/tp/${tp.tpname}`" class="btn btn-primary">visit {{ tp.tpname }}</NuxtLink>
                     </div>
                 </div>
@@ -20,14 +20,14 @@
 import axios from 'axios'
 const { renType } = defineProps(['renType'])
 const { data:toppik } = await useAsyncData(async() => {
-    const res= await axios.get("http://127.0.0.1:5000/api/toppick?sort=-tpslug&invoke=c6dad947-472a-44a6-a408-73f2eba545d6")
+    const res= await axios.get("http://127.0.0.1:5000/api/toppick?sort=tpslug&invoke=c6dad947-472a-44a6-a408-73f2eba545d6")
     return res.data
 })
 </script>
 
 <style>
     .nihtp {
-        margin: 3rem 10%;
+        margin: 3rem 5%;
     }
     @Media (max-width: 991px) {
         .nihtp {
